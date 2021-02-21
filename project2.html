@@ -1,0 +1,262 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--	<title>Flask To-Do App</title>-->
+
+<!--    &lt;!&ndash; Meta &ndash;&gt;-->
+<!--    <meta charset="utf-8">-->
+<!--    <meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <meta name="description" content="Flask To-Do App">-->
+<!--    <meta name="author" content="Bria Williams">-->
+<!-- 	&lt;!&ndash;    <link rel="shortcut icon" href="favicon.ico"> &ndash;&gt;-->
+
+<!--    &lt;!&ndash; Google Fonts &ndash;&gt;-->
+<!--	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">-->
+
+<!--    &lt;!&ndash; FontAwesome JS &ndash;&gt;-->
+<!--    <script defer src="assets/fontawesome/js/all.js"></script>-->
+
+<!--    &lt;!&ndash; Theme CSS &ndash;&gt;-->
+<!--    <link id="theme-style" rel="stylesheet" href="assets/css/theme-4.css">-->
+
+<!--</head>-->
+
+<!--<body>-->
+
+<!--	<header class="header text-center">-->
+<!--		<div class="force-overflow">-->
+<!--			<h1 class="blog-name pt-lg-4 mb-0"><a href="index.html">Bria Williams</a></h1>-->
+
+<!--			<nav class="navbar navbar-expand-lg navbar-dark" >-->
+
+<!--				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--					<span class="navbar-toggler-icon"></span>-->
+<!--				</button>-->
+
+<!--				<div id="navigation" class="collapse navbar-collapse flex-column" >-->
+<!--					<div class="profile-section pt-3 pt-lg-0">-->
+<!--						<img class="profile-image mb-3 rounded-circle mx-auto" src="assets/images/briaProfile.jpg" alt="image" >-->
+
+<!--						<div class="bio mb-3">Hi, my name is Bria Williams and I'm a software developer.</div>&lt;!&ndash;//bio&ndash;&gt;-->
+<!--						<ul class="social-list list-inline py-2 mx-auto">-->
+<!--							<li class="list-inline-item"><a href="https://twitter.com/briawilliiams"><i class="fab fa-twitter fa-fw"></i></a></li>-->
+<!--							<li class="list-inline-item"><a href="https://www.linkedin.com/in/bria-williams/"><i class="fab fa-linkedin-in fa-fw"></i></a></li>-->
+<!--							<li class="list-inline-item"><a href="https://github.com/briawilliams"><i class="fab fa-github-alt fa-fw"></i></a></li>-->
+<!--							&lt;!&ndash; <li class="list-inline-item"><a href="#"><i class="fab fa-stack-overflow fa-fw"></i></a></li> &ndash;&gt;-->
+<!--							&lt;!&ndash; <li class="list-inline-item"><a href="#"><i class="fab fa-codepen fa-fw"></i></a></li> &ndash;&gt;-->
+<!--						</ul>&lt;!&ndash;//social-list&ndash;&gt;-->
+<!--						<hr>-->
+<!--					</div>&lt;!&ndash;//profile-section&ndash;&gt;-->
+
+<!--					<ul class="navbar-nav flex-column text-left">-->
+<!--						<li class="nav-item">-->
+<!--							<a class="nav-link" href="index.html"><i class="fas fa-user fa-fw mr-2"></i>About Me</a>-->
+<!--						</li>-->
+<!--						<li class="nav-item">-->
+<!--							<a class="nav-link" href="portfolio.html"><i class="fas fa-laptop-code fa-fw mr-2"></i>Portfolio</a>-->
+<!--						</li>-->
+<!--						<li class="nav-item">-->
+<!--							<a class="nav-link" href="resume.html"><i class="fas fa-file-alt fa-fw mr-2"></i>Resume</a>-->
+<!--						</li>-->
+<!--						<li class="nav-item">-->
+<!--							<a class="nav-link" href="contact.html"><i class="fas fa-envelope-open-text fa-fw mr-2"></i>Contact</a>-->
+<!--						</li>-->
+<!--					</ul>-->
+
+<!--					<div class="my-2">-->
+<!--						<a class="btn btn-primary" href="contact.html" target="_blank"><i class="fas fa-paper-plane mr-2"></i>Hire Me</a>-->
+<!--					</div>-->
+
+
+<!--					<div class="dark-mode-toggle text-center w-100">-->
+<!--						<hr class="mb-4">-->
+<!--					    <h4 class="toggle-name mb-3 "><i class="fas fa-adjust mr-1"></i>Dark Mode</h4>-->
+
+<!--					    <input class="toggle" id="darkmode" type="checkbox">-->
+<!--					    <label class="toggle-btn mx-auto mb-0" for="darkmode"></label>-->
+
+<!--					</div>&lt;!&ndash;//dark-mode-toggle&ndash;&gt;-->
+
+<!--				</div>-->
+<!--			</nav>-->
+<!--		</div>&lt;!&ndash;//force-overflow&ndash;&gt;-->
+<!--	</header>-->
+
+<!--    <div class="main-wrapper">-->
+<!--	    <section class="cta-section theme-bg-light py-5">-->
+<!--		    <div class="container single-col-max-width">-->
+<!--			    <h2 class="heading text-center">Project: Flask To-Do App</h2>-->
+<!--			    <div class="project-intro text-center">-->
+<!--					<p class="mb-0 lead">A simple To-Do app powered by Flask and performs CRUD operations using SQLAlchemy.</p>-->
+<!--				</div>-->
+
+<!--		    </div>&lt;!&ndash;//container&ndash;&gt;-->
+<!--	    </section>-->
+<!--	    <section class="project px-3 py-5 p-md-5">-->
+<!--		    <div class="container">-->
+<!--			    <div class="project-meta media flex-column flex-md-row p-4 theme-bg-light">-->
+<!--				    <img class="project-thumb mb-3 mb-md-0 mr-md-5 rounded d-none d-md-inline-block" src="assets/images/project/toDoShot.png" style="border: 12px solid #555;"alt="">-->
+<!--					<div class="media-body">-->
+<!--					    <div class="client-info">-->
+<!--						    <h3 class="client-name font-weight-bold mb-4">Simple To-Do App</h3>-->
+<!--						    <ul class="client-meta list-unstyled">-->
+<!--&lt;!&ndash;							    <li class="mb-2"><i class="fas fa-industry fa-fw mr-2"></i><strong>Industry:</strong> Tech</li>&ndash;&gt;-->
+<!--&lt;!&ndash;							    <li class="mb-2"><i class="fas fa-users fa-fw mr-2"></i><strong>Size:</strong> 100+</li>&ndash;&gt;-->
+<!--							    <li class="mb-2"><strong><i class="fas fa-link fa-fw mr-2"></i>Website:</strong> <a class="theme-link" href="https://hello-flaskr.herokuapp.com/">hello-flaskr.herokuapp.com/</a></li>-->
+
+<!--						    </ul>-->
+<!--						    <div class="client-bio mb-4">This To-Do app is a simple Flask web application that serves as a to-do list for the user. The app allows the user to add items to their list, update that item's completion, as well as delete items. </div>-->
+<!--						    <h4 class="subheading mb-3">Project Specifications</h4>-->
+<!--						    <ul class="mb-0">-->
+<!--							    <li class="mb-2">Flask framework used to create web application.</li>-->
+<!--							    <li class="mb-2">SQLAlchemy and SQLite used to perform basic CRUD operations.</li>-->
+<!--							    <li class="mb-2">Semantic UI used as an easy way to style the webpage  </li>-->
+<!--								<li class="mb-2">Heroku CLI used to deploy application.</li>-->
+<!--						    </ul>-->
+<!--					    </div>-->
+<!--					</div>&lt;!&ndash;//media-body&ndash;&gt;-->
+<!--				</div>&lt;!&ndash;//project-meta&ndash;&gt;-->
+<!--				<div class="project-sections py-5">-->
+<!--					<div class="project-section mb-5">-->
+<!--					    <h3 class="project-section-title mb-3">Project Overview</h3>-->
+<!--					    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. </p>-->
+<!--					</div>&lt;!&ndash;//project-section&ndash;&gt;-->
+
+<!--					<div class="project-section mb-5">-->
+<!--					     <h3 class="project-section-title">The Challenge</h3>-->
+<!--					    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. </p>-->
+
+<!--					</div>&lt;!&ndash;//project-section&ndash;&gt;-->
+
+<!--					<div class="project-section mb-5">-->
+<!--					     <h3 class="project-section-title">The Approach &amp; Solution</h3>-->
+<!--					    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. </p>-->
+<!--					    <div class="row mt-5">-->
+<!--						    <div class="col-12 col-lg-6 mb-5">-->
+<!--							    <img class="img-fluid rounded" src="assets/images/project/project-figure-1.jpg" alt="image">-->
+<!--						    </div>-->
+<!--						    <div class="col-12 col-lg-6 mb-5">-->
+<!--							    <img class="img-fluid rounded" src="assets/images/project/project-figure-2.jpg" alt="image">-->
+<!--						    </div>-->
+<!--					    </div>-->
+
+<!--&lt;!&ndash;					    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. </p>&ndash;&gt;-->
+<!--&lt;!&ndash;					     &ndash;&gt;-->
+<!--&lt;!&ndash;					</div>&lt;!&ndash;//project-section&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;					&ndash;&gt;-->
+<!--&lt;!&ndash;					<div class="project-section mb-5">&ndash;&gt;-->
+<!--&lt;!&ndash;					     <h3 class="project-section-title mb-3">The Results</h3>&ndash;&gt;-->
+<!--&lt;!&ndash;					     &ndash;&gt;-->
+<!--&lt;!&ndash;					     <div class="metrics mb-4">&ndash;&gt;-->
+<!--&lt;!&ndash;						     <div class="row">&ndash;&gt;-->
+<!--&lt;!&ndash;							     <div class="metric col-6 col-xl-3 mb-3">&ndash;&gt;-->
+<!--&lt;!&ndash;								     <div class="inner p-3 theme-bg-light">&ndash;&gt;-->
+<!--&lt;!&ndash;									     <div class="metric-name">Efficiency</div>&ndash;&gt;-->
+<!--&lt;!&ndash;									     <div class="metric-data mb-2">20% <span class="unit">up</span></div>&ndash;&gt;-->
+<!--&lt;!&ndash;									     <div class="metric-desc">Metric description lorem ipsum dolor sit amet.</div>&ndash;&gt;-->
+<!--&lt;!&ndash;								     </div>&ndash;&gt;-->
+<!--&lt;!&ndash;							     </div>&lt;!&ndash;//metric&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;							     <div class="metric col-6 col-xl-3 mb-3">&ndash;&gt;-->
+<!--&lt;!&ndash;								     <div class="inner p-3 theme-bg-light">&ndash;&gt;-->
+<!--&lt;!&ndash;									     <div class="metric-name">Customer Satisfaction</div>&ndash;&gt;-->
+<!--&lt;!&ndash;									     <div class="metric-data mb-2">14% <span class="unit">up</span></div>&ndash;&gt;-->
+<!--&lt;!&ndash;									     <div class="metric-desc">Metric description lorem ipsum dolor sit amet.</div>&ndash;&gt;-->
+<!--&lt;!&ndash;								     </div>&ndash;&gt;-->
+<!--&lt;!&ndash;							     </div>&lt;!&ndash;//metric&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;							     <div class="metric col-6 col-xl-3 mb-3">&ndash;&gt;-->
+<!--&lt;!&ndash;								     <div class="inner p-3 theme-bg-light">&ndash;&gt;-->
+<!--&lt;!&ndash;									     <div class="metric-name">Sales Generated</div>&ndash;&gt;-->
+<!--&lt;!&ndash;									     <div class="metric-data mb-2">$130K</div>&ndash;&gt;-->
+<!--&lt;!&ndash;									     <div class="metric-desc">Metric description lorem ipsum dolor sit amet.</div>&ndash;&gt;-->
+<!--&lt;!&ndash;								     </div>&ndash;&gt;-->
+<!--&lt;!&ndash;							     </div>&lt;!&ndash;//metric&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;							     <div class="metric col-6 col-xl-3 mb-3">&ndash;&gt;-->
+<!--&lt;!&ndash;								     <div class="inner p-3 theme-bg-light">&ndash;&gt;-->
+<!--&lt;!&ndash;									     <div class="metric-name">Overall Cost</div>&ndash;&gt;-->
+<!--&lt;!&ndash;									     <div class="metric-data mb-2">20% <span class="unit">down</span></div>&ndash;&gt;-->
+<!--&lt;!&ndash;									     <div class="metric-desc">Metric description lorem ipsum dolor sit amet.</div>&ndash;&gt;-->
+<!--&lt;!&ndash;								     </div>&ndash;&gt;-->
+<!--&lt;!&ndash;							     </div>&lt;!&ndash;//metric&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;						     </div>&lt;!&ndash;//row&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;					     </div>&lt;!&ndash;//metrics&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;					     &ndash;&gt;-->
+<!--&lt;!&ndash;					    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. </p>&ndash;&gt;-->
+<!--&lt;!&ndash;					     &ndash;&gt;-->
+<!--&lt;!&ndash;					</div>&lt;!&ndash;//project-section&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;					&ndash;&gt;-->
+<!--&lt;!&ndash;					<div class="project-section mb-5">&ndash;&gt;-->
+<!--&lt;!&ndash;					     <h3 class="project-section-title mb-3">Client Testimonial</h3>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&lt;!&ndash;//project-section&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;				    <div class="client-quote">&ndash;&gt;-->
+<!--&lt;!&ndash;						<div class="quote-holder">&ndash;&gt;-->
+<!--&lt;!&ndash;							<blockquote class="quote-content">&ndash;&gt;-->
+<!--&lt;!&ndash;								Simon is a brilliant software engineer! Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis.&ndash;&gt;-->
+<!--&lt;!&ndash;							</blockquote>&ndash;&gt;-->
+<!--&lt;!&ndash;							<i class="fas fa-quote-left"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;						</div>&lt;!&ndash;//quote-holder&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;						<div class="source-holder">&ndash;&gt;-->
+<!--&lt;!&ndash;							<div class="source-profile">&ndash;&gt;-->
+<!--&lt;!&ndash;								<img src="assets/images/clients/profile-4.png" alt="image"/>&ndash;&gt;-->
+<!--&lt;!&ndash;							</div>&ndash;&gt;-->
+<!--&lt;!&ndash;							<div class="meta">&ndash;&gt;-->
+<!--&lt;!&ndash;								<div class="name">James Lee</div>&ndash;&gt;-->
+<!--&lt;!&ndash;								<div class="info">Product Manager, Amazon</div>&ndash;&gt;-->
+<!--&lt;!&ndash;							</div>&ndash;&gt;-->
+<!--&lt;!&ndash;						</div>&ndash;&gt;-->
+<!--&lt;!&ndash;					</div>&ndash;&gt;-->
+<!--&lt;!&ndash;				</div>&ndash;&gt;-->
+<!--&lt;!&ndash;		    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;	    </section>&ndash;&gt;-->
+<!--&lt;!&ndash;	    &ndash;&gt;-->
+<!--&lt;!&ndash;	    <section class="promo-section theme-bg-light py-5 text-center">&ndash;&gt;-->
+<!--&lt;!&ndash;		    <div class="container single-col-max-width">&ndash;&gt;-->
+<!--&lt;!&ndash;			    <h2 class="title">Want me to help with your project?</h2>&ndash;&gt;-->
+<!--&lt;!&ndash;			    <p>If you take on freelance work, you can use this section to prompt any potential clients to get in touch with you with their project requirements.</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="text-center"><a class="btn btn-primary" href="contact.html" target="_blank"><i class="fas fa-paper-plane mr-2"></i>Hire Me</a></div>&ndash;&gt;-->
+<!--&lt;!&ndash;		    </div>&lt;!&ndash;//container&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;	    </section>&lt;!&ndash;//promo-section&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;	    &ndash;&gt;-->
+<!--&lt;!&ndash;	    <footer class="footer text-center py-4">&ndash;&gt;-->
+<!--&lt;!&ndash;			<small class="copyright">Template Copyright &copy; <a href="https://themes.3rdwavemedia.com/" target="_blank">3rd Wave Media</a></small>&ndash;&gt;-->
+<!--&lt;!&ndash;		</footer>&ndash;&gt;-->
+<!--&lt;!&ndash;    &ndash;&gt;-->
+<!--&lt;!&ndash;    </div>&lt;!&ndash;//main-wrapper&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;    &ndash;&gt;-->
+<!--&lt;!&ndash;    &lt;!&ndash; *****CONFIGURE STYLE (REMOVE ON YOUR PRODUCTION SITE)****** &ndash;&gt;  &ndash;&gt;-->
+<!--&lt;!&ndash;	<div id="config-panel" class="config-panel d-none d-lg-block">&ndash;&gt;-->
+<!--&lt;!&ndash;		<div class="panel-inner">&ndash;&gt;-->
+<!--&lt;!&ndash;			<a id="config-trigger" class="config-trigger config-panel-hide text-center" href="#"><i class="fas fa-cog mx-auto" data-fa-transform="down-6" ></i></a>&ndash;&gt;-->
+<!--&lt;!&ndash;			<h5 class="panel-title">Choose Colour</h5>&ndash;&gt;-->
+<!--&lt;!&ndash;			<ul id="color-options" class="list-inline mb-0">&ndash;&gt;-->
+<!--&lt;!&ndash;				<li class="theme-1 active list-inline-item"><a data-style="assets/css/theme-1.css" href="#"></a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;				<li class="theme-2  list-inline-item"><a data-style="assets/css/theme-2.css" href="#"></a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;				<li class="theme-3  list-inline-item"><a data-style="assets/css/theme-3.css" href="#"></a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;				<li class="theme-4  list-inline-item"><a data-style="assets/css/theme-4.css" href="#"></a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;				<li class="theme-5  list-inline-item"><a data-style="assets/css/theme-5.css" href="#"></a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;				<li class="theme-6  list-inline-item"><a data-style="assets/css/theme-6.css" href="#"></a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;				<li class="theme-7  list-inline-item"><a data-style="assets/css/theme-7.css" href="#"></a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;				<li class="theme-8  list-inline-item"><a data-style="assets/css/theme-8.css" href="#"></a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;				<li class="theme-9  list-inline-item"><a data-style="assets/css/theme-9.css" href="#"></a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;				<li class="theme-10  list-inline-item"><a data-style="assets/css/theme-10.css" href="#"></a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;			</ul>&ndash;&gt;-->
+<!--&lt;!&ndash;			<a id="config-close" class="close" href="#"><i class="fa fa-times-circle"></i></a>&ndash;&gt;-->
+<!--&lt;!&ndash;		</div>&lt;!&ndash;//panel-inner&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;	</div>&lt;!&ndash;//configure-panel&ndash;&gt;&ndash;&gt;-->
+
+<!--    &lt;!&ndash; Javascript &ndash;&gt;-->
+<!--    <script src="assets/plugins/jquery-3.4.1.min.js"></script>-->
+<!--    <script src="assets/plugins/popper.min.js"></script>-->
+<!--    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>-->
+
+<!--    &lt;!&ndash; Dark Mode &ndash;&gt;-->
+<!--	<script src="assets/plugins/js-cookie.min.js"></script>-->
+<!--	<script src="assets/js/dark-mode.js"></script>-->
+
+<!--&lt;!&ndash;    &lt;!&ndash; Style Switcher (REMOVE ON YOUR PRODUCTION SITE) &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;    <script src="assets/js/demo/style-switcher.js"></script>     &ndash;&gt;-->
+<!--&lt;!&ndash;    &ndash;&gt;-->
+
+<!--</body>-->
+<!--</html>-->
+
