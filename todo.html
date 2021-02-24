@@ -102,7 +102,7 @@
 						    <h3 class="client-name font-weight-bold mb-4">Simple To-Do App</h3>
 						    <ul class="client-meta list-unstyled">
 <!--							    <li class="mb-2"><i class="fas fa-industry fa-fw mr-2"></i><strong>Industry:</strong> Tech</li>-->
-<!--							    <li class="mb-2"><i class="fas fa-users fa-fw mr-2"></i><strong>Size:</strong> 100+</li>-->
+							    <li class="mb-2"><i class="fas fa-github fa-fw mr-2"></i><strong>Repository:</strong><a class="theme-link" href="https://github.com/BriaWilliams/todoApp">Github</a></li>
 							    <li class="mb-2"><strong><i class="fas fa-link fa-fw mr-2"></i>Website:</strong> <a class="theme-link" href="https://hello-flaskr.herokuapp.com/">hello-flaskr.herokuapp.com/</a></li>
 
 						    </ul>
@@ -120,32 +120,54 @@
 				<div class="project-sections py-5">
 					<div class="project-section mb-5">
 					    <h3 class="project-section-title mb-3">Project Overview</h3>
-					    <p> This application was fairly simple to build as Flask framework allows for quick and easy startup. After setting up a virtual environment, Flask and SQLAlchemy was installed. A template  orem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. </p>
+					    <p> This application was fairly simple to build as Flask framework allows for quick and easy startup.
+							After setting up a virtual environment, Flask and SQLAlchemy was installed. SQLAlchemy was used to handle the CRUD operations of the to-do app.&#13;&#10; Below are the functions I created to add, change the status of, and delete items in the database.
+							<pre style="background-color: #eee; width: 800px; border-radius:5px; padding:10px; white-space: normal; word-break: break-word;">
+							<code>@app.route('/add', methods=["POST"])<br>def add():<br>
+							&nbsp;&nbsp;&nbsp;&nbsp;# add new item<br>&nbsp;&nbsp;&nbsp;&nbsp;title = request.form.get("title")<br>&nbsp;&nbsp;&nbsp;&nbsp;new_todo = Todo(title=title, complete=False)<br>&nbsp;&nbsp;&nbsp;&nbsp;db.session.add(new_todo)<br>&nbsp;&nbsp;&nbsp;&nbsp;db.session.commit()<br>&nbsp;&nbsp;&nbsp;&nbsp;return redirect(url_for("index"))<br>
+							<br>
+							@app.route('/update/&lt;int:todo_id&gt;')<br>def update(todo_id):<br>&nbsp;&nbsp;&nbsp;&nbsp;# update item<br>&nbsp;&nbsp;&nbsp;&nbsp;todo = Todo.query.filter_by(id=todo_id).first()<br>&nbsp;&nbsp;&nbsp;&nbsp;todo.complete = not todo.complete<br>&nbsp;&nbsp;&nbsp;&nbsp;db.session.commit()<br>&nbsp;&nbsp;&nbsp;&nbsp;return redirect(url_for("index"))
+								<br><br>@app.route('/delete/&lt;int:todo_id&gt;')<br>def delete(todo_id):<br>&nbsp;&nbsp;&nbsp;&nbsp;# delete item<br>&nbsp;&nbsp;&nbsp;&nbsp;todo = Todo.query.filter_by(id=todo_id).first()<br>&nbsp;&nbsp;&nbsp;&nbsp;db.session.delete(todo)<br>&nbsp;&nbsp;&nbsp;&nbsp;db.session.commit()<br>&nbsp;&nbsp;&nbsp;&nbsp;return redirect(url_for("index"))</code>
+							</pre>
+							The interface of the to-do app was made using an HTML template that utilizes Semantic UI to give the page a more polished look.
+							Semantic UI is an open source framework that utilizes Cascading Style Sheets (CSS) class names to generate a natural language styling library.
+							This framework made styling very easy and only required me to include the two lines below within my HTML to get started. <br><br>
+							<pre style="background-color: #eee;  border-radius:5px; width: 800px; height:60px;  padding: 5px; white-space: normal; word-break: break-word;"><code>  &lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">&#13;&#10;  &lt;script&gt; src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"&gt; &lt;/script&gt;</code>
+							</pre>
+						I deployed the app using Heroku which I was able to do very easily. After Heroku CLI was installed in my environment, I created a requirements.txt file which specifies what python packages are required to run the project.
+						Heroku applications also include a Procfile which specifies the commands that are executed by the app on startup. After committing the changes to my local branch, I pushed those changes to the Heroku master branch to deploy the app.
+						<br>
+
+						</p>
 					</div><!--//project-section-->
 
+<!--					<div class="project-section mb-5">-->
+<!--					     <h3 class="project-section-title">The Challenge</h3>-->
+
+<!--						<pre style="background-color: #eee;  border-radius: 5px; width: 500px; height:100px; padding: 10px; white-space: normal; word-break: break-word;"><code>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.-->
+<!--							     Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.-->
+<!--							     Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus.</code></pre>-->
+
+<!--					    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. uis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. </p>-->
+
+
+<!--					</div>&lt;!&ndash;//project-section&ndash;&gt;-->
+
 					<div class="project-section mb-5">
-					     <h3 class="project-section-title">The Challenge</h3>
-
-						<pre style="background-color: #eee;  border-radius: 5px; width: 500px; height:100px;"><code>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-							     Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.
-							     Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus.</code></pre>
-
-					    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. uis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. </p>
-
-
-					</div><!--//project-section-->
-
-					<div class="project-section mb-5">
-					     <h3 class="project-section-title">The Approach &amp; Solution</h3>
-					    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. </p>
-					    <div class="row mt-5">
-						    <div class="col-12 col-lg-6 mb-5">
-							    <img class="img-fluid rounded" src="assets/images/project/project-figure-1.jpg" alt="image">
-						    </div>
-						    <div class="col-12 col-lg-6 mb-5">
-							    <img class="img-fluid rounded" src="assets/images/project/project-figure-2.jpg" alt="image">
-						    </div>
-					    </div>
+					     <h3 class="project-section-title">Future Enhancements</h3>
+						<ul>
+							<li>Login and authentication</li>
+							<li>Use Javascript to update webpage without refreshing</li>
+							<li>More appealing interface</li>
+						</ul>
+<!--					    <div class="row mt-5">-->
+<!--						    <div class="col-12 col-lg-6 mb-5">-->
+<!--							    <img class="img-fluid rounded" src="assets/images/project/project-figure-1.jpg" alt="image">-->
+<!--						    </div>-->
+<!--						    <div class="col-12 col-lg-6 mb-5">-->
+<!--							    <img class="img-fluid rounded" src="assets/images/project/project-figure-2.jpg" alt="image">-->
+<!--						    </div>-->
+<!--					    </div>-->
 
 <!--					    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. </p>-->
 <!--					     -->
