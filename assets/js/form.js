@@ -35,5 +35,6 @@ document.getElementById("send-now").addEventListener("click", function() {
 
 xhr.open("POST", url, true);
 xhr.setRequestHeader('Content-Type', 'application/json');
+xhr.preventDefault()
 xhr.send(JSON.stringify({ name: cname, from: cemail, reason: reason, time: event.toLocaleDateString(undefined, options), text: cmessage}));
 });
