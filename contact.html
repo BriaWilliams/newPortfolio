@@ -107,7 +107,13 @@
 	    </section>
 	    <section class="contact-section px-3 py-5 p-md-5">
 		    <div class="container">
-			    <form id="contact-form" class="contact-form col-lg-8 mx-lg-auto" method="post" action="">
+			    <form id="contact-form" class="contact-form col-lg-8 mx-lg-auto">					
+					<div class="alert alert-success alert-dismissible fade show" role="alert" style="display: none;" id="alert">
+						<p id="paragraph"></p>
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						  <span aria-hidden="true">&times;</span>
+						</button>
+					  </div>
 			        <h3 class="text-center mb-3">Get In Touch</h3>
 			        <div class="form-row">                                                           
 		                <div class="form-group col-md-6">
@@ -132,7 +138,8 @@
 		                    <textarea class="form-control" id="cmessage" name="message" placeholder="Enter your message" rows="10" required="" aria-required="true"></textarea>
 		                </div>
 		                 <div class="form-group col-12">
-		                    <button id="send-now" type="submit" class="btn btn-block btn-primary py-2">Send Now</button>
+		                    <button id="send-now" class="btn btn-block btn-primary py-2">Send Now</button>
+
 		                </div>                           
 		            </div><!--//form-row-->
 		        </form>
