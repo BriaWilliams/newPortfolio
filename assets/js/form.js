@@ -41,15 +41,12 @@ xhr.setRequestHeader('Content-Type', 'application/json');
 xhr.onreadystatechange = function() {//Call a function when the state changes.
   var alert = document.getElementById("alert");
      if(xhr.readyState == 4 && xhr.status == 200) {
-     // if(false){
       // show alert if success
       var message = JSON.parse(xhr.responseText).message;
       document.getElementById("paragraph").textContent = message;
-      console.log("Class type", alert.classList);
       if(alert.classList.contains("alert-danger")) {
         alert.classList.remove("alert-danger")
         alert.classList.add("alert-success")
-        console.log("SUCCESS;");
       }
       alert.style.display = "block";
       // clean form
