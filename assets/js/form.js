@@ -13,13 +13,9 @@ $(document).ready(function() {
 			},		
 			message: {
 				required: 'Please enter your message' //You can customise this message
-			}
-			
+			}	
 		}
-		
 	});
-    
-
 });
 
 
