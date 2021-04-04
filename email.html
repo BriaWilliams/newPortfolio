@@ -19,6 +19,9 @@
     <!-- Theme CSS -->
     <link id="theme-style" rel="stylesheet" href="assets/css/theme-4.css">
 
+	<!--Highlight JS Plugin-->
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/styles/paraiso-dark.min.css">
+
 </head>
 
 <body>
@@ -115,10 +118,81 @@
 					<div class="project-section mb-5">
 					    <h3 class="project-section-title mb-3">Project Overview</h3>
 					    <p>This API takes information submitted via a form and uses it to send an email. 
-							I began by configuring the email functionality using Flask-Mail. This was a fairly simple process
-							I began by using Javascript to create function that listens for a "click" 
-							event on a submit button. Next, I grabbed the data inputted into the form by
-							getting each input element by its ID and storing its value into a variable. </p>
+							I began by implementing the email functionality using Flask-Mail. This was a fairly 
+							simple process: after installing the Flask-Mail extension, I configured it using 
+							the standard Flask config API. It looked like this:
+							<pre>
+								<code class="hljs python">
+app = Flask(__name__)
+mail= Mail(app)
+
+app.config['MAIL_SERVER']='smtp.gmail.com'
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USERNAME'] = 'bria.williams128@gmail.com'
+app.config['MAIL_PASSWORD'] = '*********'
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = True
+
+</code></pre>
+							I then created a route that accepts POST requests as a decorator for my primary function. 
+							Within my function, I implemented a conditional	that sends a message using the Message 
+							instance if the request method is "POST". The function uses jsonify to return a JSON 
+							response to the view; the response returns either a 200 or 400 status code.
+							<br><br>
+							Next I used Javascript to create a function that listens for a "click" 
+							event on a submit button to send the data to the server. I grabbed the data inputted into the form by
+							getting each input element by its ID and storing its value into a variable. 
+							I initialized an XHTMLRequest with POST as the request's method and set the url 
+							to the address of the server. Another function is called when the state of the request changes 
+							which handles the alert the user sees in the view. I also formatted the date so that it would 
+							be more readable within the message.
+						<pre>
+							<code class="hljs javascript">
+document.getElementById("send-now").addEventListener("click", function(event) {
+    const SERVER_URL = 'https://email-controller.herokuapp.com/contact';
+    const POST_METHOD = 'POST';
+    const isAsync = true;
+    event.preventDefault();
+    var cname = document.getElementById("cname").value;
+    var cemail = document.getElementById("cemail").value;
+    var reason = document.getElementById("services").value;
+    var cmessage = document.getElementById("cmessage").value;
+    var xhr = new XMLHttpRequest();
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    const date = new Date();
+
+xhr.open(POST_METHOD, SERVER_URL, isAsync);
+xhr.setRequestHeader('Content-Type', 'application/json');
+xhr.onreadystatechange = function() {//Call a function when the state changes.
+  var alert = document.getElementById("alert");
+    if(xhr.readyState == 4 && xhr.status == 200) {
+    // show alert if success
+    var message = JSON.parse(xhr.responseText).message;
+    document.getElementById("paragraph").textContent = message;
+    if(alert.classList.contains("alert-danger")) {
+    alert.classList.remove("alert-danger")
+    alert.classList.add("alert-success")
+    }
+    alert.style.display = "block";
+    // clean form
+    document.getElementById("name").value='';
+    document.getElementById("email").value='';
+    document.getElementById("reason").value='';
+    document.getElementById("message").value='';
+    } else {
+    alert.classList.remove("alert-success")
+    alert.classList.add("alert-danger")
+    var alert = document.getElementById("alert");
+    alert.style.display = "block";
+    document.getElementById("paragraph").textContent = 'Some error occurred. Please try again.';
+   }
+}
+xhr.send(JSON.stringify({ name: name, from: email, reason: reason, time: date.toLocaleDateString(undefined, options),
+text: cmessage}));
+});
+						</code
+						></pre>
+					</p>
 					</div><!--//project-section-->
 
 				</div>
@@ -126,7 +200,7 @@
 		</section>
 	</div>
 
-<!--					<div class="project-section mb-5">-->
+<!--	 				<div class="project-section mb-5">-->
 <!--					     <h3 class="project-section-title">The Challenge</h3>-->
 <!--					    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. </p>-->
 
@@ -232,6 +306,8 @@
    <script src="assets/plugins/jquery-3.4.1.min.js"></script>
    <script src="assets/plugins/popper.min.js"></script>
    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+   <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.6.0/highlight.min.js"></script>
+   <script>hljs.initHighlightingOnLoad();</script>
 
 <!--    Dark Mode-->
 	<script src="assets/plugins/js-cookie.min.js"></script>
