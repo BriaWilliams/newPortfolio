@@ -117,10 +117,9 @@
 				<div class="project-sections py-5">
 					<div class="project-section mb-5">
 					    <h3 class="project-section-title mb-3">Project Overview</h3>
-					    <p>This API takes information submitted via a form and uses it to send an email. 
-							I began by implementing the email functionality using Flask-Mail. This was a fairly 
-							simple process: after installing the Flask-Mail extension, I configured it using 
-							the standard Flask config API. It looked like this:
+					    <p>This application takes information submitted via a form and uses it to send an email. 
+						    The email functionality using Flask-Mail. After installing the Flask-Mail extension, 
+							I configured it using the standard Flask config API. It looked like this:
 							<pre>
 								<code class="hljs python">
 app = Flask(__name__)
@@ -134,18 +133,45 @@ app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 
 </code></pre>
-							I then created a route that accepts POST requests as a decorator for my primary function. 
-							Within my function, I implemented a conditional	that sends a message using the Message 
-							instance if the request method is "POST". The function uses jsonify to return a JSON 
-							response to the view; the response returns either a 200 or 400 status code.
-							<br><br>
-							Next I used Javascript to create a function that listens for a "click" 
-							event on a submit button to send the data to the server. I grabbed the data inputted into the form by
-							getting each input element by its ID and storing its value into a variable. 
-							I initialized an XHTMLRequest with POST as the request's method and set the url 
-							to the address of the server. Another function is called when the state of the request changes 
-							which handles the alert the user sees in the view. I also formatted the date so that it would 
-							be more readable within the message.
+							I then created a route that accepts POST requests as a function. Within that function, 
+							I implemented a condition that 	sends a 400 bad request if the method is not POST or if
+						    any of the required fields are missing in the request. The function uses jsonify to 
+							return a JSON response to the user with an appropriate message and a code of 400.
+							<br>
+							<br>
+							In case the method is POST, the JSON response from the server is parsed from a string to a JSON 
+							object so that I could get the values from the response and format the email message being sent. 
+							I then create an instance of the Message class from Flask-Mail and set up the Message object with 
+							subject, sender, and recipients of the email. Then the Message instance is sent. This is the
+							back-end API implementation.
+							<br>
+							<br>
+							<pre><code class="hljs python">
+
+@app.route("/contact", methods= ['GET', 'POST'])
+def contact():
+    if request.method == 'POST':
+	request_body = request.get_json()
+	name = request_body['name']
+	email = request_body['from']
+	time = request_body['time']
+	reason = request_body['reason']
+	text = request_body['text']
+
+	message = "Hi Bria,\n\nYou received a message from " + name + " on " + time + " via this email: " + email + ". \n" \
+		"\nHere is the reason for their message: " + reason + "\n\nHere is the message that they sent: \n \n" + text + \
+		"\n\nThis concludes their message. \n\nSincerely your secretary, \n\n" \
+		"Bria."
+
+	msg = Message('Website Contact', sender='bria.williams128@gmail.com', recipients=['bria.williams128@gmail.com'])
+	msg.body = message
+	mail.send(msg)
+							</code></pre>
+							For the front-end, I used Javascript to create a function that listens for a "click" event on a submit button in
+							the form to send the data to the server. I grabbed the data inputted into the form by getting each input element by its
+							ID and storing its value into a variable. I initialized an XHTMLRequest with POST as the request's method and set the
+							URL to the address of the server. Another function is called when the state of the request changes which handles the
+							alert the user sees in the view. I also formatted the date so that it would be more readable within the message.
 						<pre>
 							<code class="hljs javascript">
 document.getElementById("send-now").addEventListener("click", function(event) {
@@ -192,7 +218,10 @@ text: cmessage}));
 });
 						</code
 						></pre>
-					</p>
+
+						I actually used the implementation of this Email API on this very website. 
+						It handles the messages sent via the contact form and sends the message 
+						to my email. </p>
 					</div><!--//project-section-->
 
 				</div>
